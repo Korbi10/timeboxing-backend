@@ -1,1 +1,2 @@
 from .handler_get_appointments import handler as mock_appointments_handler
+from .handler_get_appointments import handler_get_by_id as get_appointments_by_id

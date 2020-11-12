@@ -17,16 +17,30 @@ provider:
     - "restApi"
 
 functions:
-  readSapMockTrainerInfos:
+  getAppointments:
     handler: mock.mock_appointments_handler
     role: DefaultLambdaRole
     environment:
       BUCKET_NAME: !Ref DataBucket
     events:
       - http:
-          path: sap-mock
+          path: /appointments
           method: get
           private: false
+  getAppointmentFromId:
+    handler: mock.get_appointments_by_id
+    role: DefaultLambdaRole
+    environment:
+      BUCKET_NAME: !Ref DataBucket
+    events:
+      - http:
+          path: /appointments/{id}
+          method: get
+          private: false
+          request:
+            parameters:
+              paths:
+                id: true
 
 resources:
   Resources:
